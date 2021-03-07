@@ -1,0 +1,132 @@
+body {
+  background: #fffff8;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 10% 40% 40% 10%;
+  grid-template-rows: 20% auto auto auto;
+  grid-template-areas:
+    "lo head head fi"
+    "lo zip entry fi"
+    "lo feel entry fi"
+    "lo none none fi";
+  justify-content: center;
+  grid-row-gap: 1em;
+  grid-column-gap: 1em;
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.headline {
+  grid-area: head;
+  font-size: 2em;
+  text-align: center;
+  align-self: center;
+}
+
+.entry {
+  background: rgba(59, 74, 107, .4);
+  grid-area: entry;
+  width: auto;
+  text-align: center;
+  padding: 1em;
+}
+
+.zip {
+  grid-area: zip;
+  align-self: center;
+}
+
+.feel {
+  grid-area: feel;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+label {
+  display: block;
+  font-size: 27px;
+}
+
+input {
+  height: 60px;
+  width: auto;
+  background: #add8e6;
+  color: #3b4a6b;
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  border: none;
+}
+
+textarea {
+  background: #add8e6;
+  color: #3b4a6b;
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  border: none;
+}
+
+button {
+  height: auto;
+  margin-top: 0.5em;
+  background: #3b4a6b;
+  color: #fffff8;
+  font-size: 26px;
+  font-family: 'Oswald', sans-serif;
+  border: 1px solid black;
+  box-shadow: 2px 4px 5px #444;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+/* Style for Placeholder Text*/
+::placeholder {
+  /* Firefox, Chrome, Opera */
+  color: #3b4a6b;
+  font-family: 'Oswald', sans-serif;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #3b4a6b;
+  font-family: 'Oswald', sans-serif;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #3b4a6b;
+  font-family: 'Oswald', sans-serif;
+}
+
+/* RESPONSIVE FOR SMALL SCREEN */
+@media (max-width: 600px) {
+  #app {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "head"
+      "zip"
+      "feel"
+      "entry";
+    justify-content: center;
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+  }
+}

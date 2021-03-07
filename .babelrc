@@ -1,0 +1,4 @@
+{
+    'presets': ['@babel/preset-env'],
+    'plugins': ['@babel/transform-runtime',  { "targets": { "node": "10.19.0" } ]
+}
