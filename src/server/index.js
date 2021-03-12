@@ -8,6 +8,7 @@ var cors = require('cors')
 const fetch = require('node-fetch')
 // Start up an instance of app
 
+const evaluation = {}
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 const app = express()
@@ -52,14 +53,16 @@ app.post('/results', async function (req,res) {
   let newDate = (d.getMonth() + 1) + '.' + d.getDate() + '.' + d.getFullYear()
 
   const app_key = process.env.API_KEY
-  const baseURL = `https://api.openweathermap.org/data/2.5/weather?zip=${req.body.url}&appid=${app_key}&units=metric`
+  const baseURL = `http://api.geonames.org/searchJSON?q=${req.body.url}&maxRows=1&username=${app_key}`
   let response = await fetch(baseURL)
   let data = await response.json()
+  console.log(data)
 
-  const evaluation = {}
-  evaluation.temperature = data.main.temp,
-  evaluation.city = data.name
+  // const evaluation = {}
+  evaluation.lat = data.geonames[0].lat,
+  evaluation.lng = data.geonames[0].lng
   evaluation.date = newDate
+  evaluation.feeel = req.body.future
   // evaluation.userresponse: newFeel
 
   res.send(evaluation)
