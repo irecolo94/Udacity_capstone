@@ -22,6 +22,7 @@ function genAnswer(event) {
             document.getElementById('city').innerHTML = 'longitude: ' + res.lng;
             document.getElementById('temp').innerHTML = 'latitude: ' + res.lat;
             document.getElementById('content').innerHTML = 'your departure date: ' + depDate;
+            document.getElementById('max_temp').innerHTML = 'Max temp will be: ' + res.tempMax;
             console.log(res)
           })
 //        else {window.alert('Invalid url')}
