@@ -13,24 +13,25 @@
 <body>
   <div id="app">
     <div class="holder headline">
-      Weather Journal App
+      Travel App
     </div>
     <div class="holder zip">
       <label for="zip">Where are you going?</label>
-      <input type="text" id="zip" placeholder="enter zip code here">
+      <input type="text" id="zip" placeholder="enter a location here">
     </div>
     <div class="holder feel">
       <label for="feelings">When are you leaving?</label>
-      <input type="date" class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></input>
+      <input type="date" class="myInput" id="feelings" placeholder="Enter the date here" rows="9" cols="50"></input>
       <button id="generate" type="submit" name = "" value="submit" onclick="return Client.genAnswer(event)" onsubmit="return genAnswer(event)" > Generate </button>
     </div>
     <div class="holder entry">
-      <div class="title">Most Recent Entry</div>
+      <div class="title" id="data_title">Your trip to: </div>
       <div id="entryHolder">
         <div id="date"></div>
         <div id="city"></div>
         <div id="temp"></div>
         <div id="content"></div>
+        <div id="countdown"></div>
         <div id="max_temp"></div>
       </div>
     </div>

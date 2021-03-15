@@ -18,11 +18,13 @@ function genAnswer(event) {
           })
           .then(res => res.json())
           .then(function(res) {
+            document.getElementById('data_title').innerHTML = 'Your trip to: ' + res.city + ' , ' + res.country;
             document.getElementById('date').innerHTML = 'date: ' + res.date;
             document.getElementById('city').innerHTML = 'longitude: ' + res.lng;
             document.getElementById('temp').innerHTML = 'latitude: ' + res.lat;
             document.getElementById('content').innerHTML = 'your departure date: ' + depDate;
-            document.getElementById('max_temp').innerHTML = 'Max temp will be: ' + res.tempMax;
+            document.getElementById('max_temp').innerHTML = 'Max temp: ' + res.tempMax + ' expected weather: ' + res.weatherDesc;
+            document.getElementById('countdown').innerHTML = 'There are only ' + res.difference + ' days left to your trip'
             console.log(res)
           })
 //        else {window.alert('Invalid url')}

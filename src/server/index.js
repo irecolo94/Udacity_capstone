@@ -59,25 +59,35 @@ app.post('/results', async function (req,res) {
   console.log(data)
 
   // const evaluation = {}
-  evaluation.lat = data.geonames[0].lat,
+  evaluation.lat = data.geonames[0].lat
   evaluation.lng = data.geonames[0].lng
+  evaluation.city = data.geonames[0].name
+  evaluation.country = data.geonames[0].countryName
   evaluation.date = newDate
   evaluation.departure = req.body.future
   // evaluation.userresponse: newFeel
 
   console.log(baseURL)
   console.log(evaluation)
-  let departureDate = new Date(evaluation.departure).getDate()
+  console.log((new Date(evaluation.departure)).getMonth())
+  console.log(d)
+  let departureDateMS = new Date(evaluation.departure).getTime()
+  const daysDelta = Math.abs(departureDateMS - d.getTime())
+  console.log(daysDelta)
+  evaluation.difference = Math.ceil(daysDelta / (1000 * 60 * 60 *24));
+
+
 
   // Weatherbi calls:
   const weath_key = process.env.API_KEY_WEATHER
   const baseURL_two = `http://api.weatherbit.io/v2.0/forecast/daily?&lat=${evaluation.lat}&lon=${evaluation.lng}&key=${weath_key}`
   const baseURL_three = `https://api.weatherbit.io/v2.0/current?&lat=${evaluation.lat}&lon=${evaluation.lng}&key=${weath_key}&include=minutely`
-  if(departureDate - d.getDate() >= 6){
+  if(daysDelta >= 6){
     let newResponse = await fetch(baseURL_two)
     let weath_data = await newResponse.json()
     console.log(weath_data.data[1])
     evaluation.tempMax = weath_data.data[1].max_temp
+    evaluation.weatherDesc = weath_data.data[1].weather.description
 
     res.send(evaluation)
 
@@ -85,7 +95,7 @@ app.post('/results', async function (req,res) {
   } else {
     let newResponse = await fetch(baseURL_three)
     let weath_data = await newResponse.json()
-    console.log(weath_data.data[1])
+    console.log(weath_data.data[0])
     evaluation.tempMax = weath_data.data[0].temp
 
     res.send(evaluation)
@@ -93,7 +103,12 @@ app.post('/results', async function (req,res) {
     console.log(evaluation)
     }
 
+    // Pixabay pics
+    const pics_key = process.env.API_KEY_PICS
+    const baseURL_pics = `https://pixabay.com/api/?key=${pics_key}&q=${evaluation.city}`
+
 })
+
 
 app.listen(4041, function () {
   console.log('Example app listening on port 4041!')
