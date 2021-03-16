@@ -25,6 +25,7 @@ function genAnswer(event) {
             document.getElementById('content').innerHTML = 'your departure date: ' + depDate;
             document.getElementById('max_temp').innerHTML = 'Max temp: ' + res.tempMax + ' expected weather: ' + res.weatherDesc;
             document.getElementById('countdown').innerHTML = 'There are only ' + res.difference + ' days left to your trip'
+            document.getElementById('img').innerHTML = '<img src="' + res.currentPic + '" alt="" id="img_small">'
             console.log(res)
           })
 //        else {window.alert('Invalid url')}

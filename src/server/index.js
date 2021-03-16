@@ -84,28 +84,40 @@ app.post('/results', async function (req,res) {
   const baseURL_three = `https://api.weatherbit.io/v2.0/current?&lat=${evaluation.lat}&lon=${evaluation.lng}&key=${weath_key}&include=minutely`
   if(daysDelta >= 6){
     let newResponse = await fetch(baseURL_two)
-    let weath_data = await newResponse.json()
-    console.log(weath_data.data[1])
-    evaluation.tempMax = weath_data.data[1].max_temp
-    evaluation.weatherDesc = weath_data.data[1].weather.description
+    let weathData = await newResponse.json()
+    console.log(weathData.data[1])
+    evaluation.tempMax = weathData.data[1].max_temp
+    evaluation.weatherDesc = weathData.data[1].weather.description
 
-    res.send(evaluation)
+    // res.send(evaluation)
 
     console.log(evaluation)
   } else {
     let newResponse = await fetch(baseURL_three)
-    let weath_data = await newResponse.json()
-    console.log(weath_data.data[0])
-    evaluation.tempMax = weath_data.data[0].temp
+    let weathData = await newResponse.json()
+    console.log(weathData.data[0])
+    evaluation.tempMax = weathData.data[0].temp
 
-    res.send(evaluation)
+    // res.send(evaluation)
 
     console.log(evaluation)
     }
 
     // Pixabay pics
+  try {
     const pics_key = process.env.API_KEY_PICS
-    const baseURL_pics = `https://pixabay.com/api/?key=${pics_key}&q=${evaluation.city}`
+    const baseURLPics = `https://pixabay.com/api/?key=${pics_key}&q=${evaluation.city}+${evaluation.country}`
+    let cityPics = await fetch(baseURLPics)
+    let picsData = await cityPics.json()
+    console.log(picsData.hits[1].webformatURL)
+
+    evaluation.currentPic = picsData.hits[1].webformatURL
+
+} catch(error) {
+  let sum = (a, b) => a + b
+  console.log(sum(2,3))}
+
+  res.send(evaluation)
 
 })
 
