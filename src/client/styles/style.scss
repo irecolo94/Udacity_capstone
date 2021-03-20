@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&family=Staatliches&display=swap');
+$font-head: Staatliches, cursive;
+$font-form: Maven Pro, sans-serif;
+$primary-color: #F5F7F9;
+$color-background: #d0efff;
+$color-text: #03254c;
+$color-borders: #2a9df4;
+
 body {
-  background: #fffff8;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: $color-background;
+  font: 100% $font-form;
+  // font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #app {
@@ -9,25 +18,37 @@ body {
   grid-template-rows: 20% auto auto auto;
   grid-template-areas:
     "lo head head fi"
-    "lo zip entry fi"
-    "lo feel entry fi"
+    "lo zip zip fi"
+    "lo entry entry fi"
     "lo none none fi";
   justify-content: center;
   grid-row-gap: 1em;
   grid-column-gap: 1em;
   font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  font: 100% $font-form;
+  color: $color-text;
 }
 
+// HEADS:
 .headline {
   grid-area: head;
-  font-size: 2em;
+  font: 100% $font-head;
   text-align: center;
   align-self: center;
+  h1 {
+    font-size: 3em;
+  }
 }
 
+
+// FORM:
+
+
+
 .entry {
-  background: rgba(59, 74, 107, .4);
+  background: $color-background;
+  border: 1px solid $color-borders;
+  border-radius: 10px;
   grid-area: entry;
   width: auto;
   text-align: center;
@@ -37,11 +58,6 @@ body {
 .zip {
   grid-area: zip;
   align-self: center;
-}
-
-.feel {
-  grid-area: feel;
-  align-self: center;
   display: flex;
   flex-direction: column;
 }
@@ -49,25 +65,18 @@ body {
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label {
   display: block;
-  font-size: 27px;
+  font-size: 1em;
+  margin-bottom: 0.5em;
 }
 
 input {
-  height: 60px;
+  height: 50px;
   width: auto;
-  background: #add8e6;
-  color: #3b4a6b;
-  font-size: 20px;
-  font-family: 'Oswald', sans-serif;
-  border: none;
-}
-
-textarea {
-  background: #add8e6;
-  color: #3b4a6b;
-  font-size: 20px;
-  font-family: 'Oswald', sans-serif;
-  border: none;
+  border: 1px solid $color-background;
+  border-radius: 20px;
+  color: grey;
+  font-size: 0.7em;
+  margin-bottom: 0.5em;
 }
 
 button {
@@ -76,15 +85,35 @@ button {
   background: #3b4a6b;
   color: #fffff8;
   font-size: 26px;
-  font-family: 'Oswald', sans-serif;
+  font: 100% $font-form;
   border: 1px solid black;
-  box-shadow: 2px 4px 5px #444;
+  &:hover {
+    background-color: $color-borders;
+  }
 }
 
 h1 {
   font-size: 36px;
 }
 
+#data_title {
+  margin-bottom: 1em;
+  h2 {
+      font: 100% $font-head;
+      font-size: 1.5em;
+    }
+}
+
+#entry_holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+img {
+  max-width: 400px;
+  max-height: 400px;
+}
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
@@ -97,19 +126,19 @@ button:focus {
 ::placeholder {
   /* Firefox, Chrome, Opera */
   color: #3b4a6b;
-  font-family: 'Oswald', sans-serif;
+  // font-family: 'Oswald', sans-serif;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #3b4a6b;
-  font-family: 'Oswald', sans-serif;
+  // font-family: 'Oswald', sans-serif;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #3b4a6b;
-  font-family: 'Oswald', sans-serif;
+  // font-family: 'Oswald', sans-serif;
 }
 
 /* RESPONSIVE FOR SMALL SCREEN */

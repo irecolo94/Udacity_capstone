@@ -33,20 +33,6 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-// app.get('/all', (req, res) => {
-//   res.send(projectData);
-// });
-//
-// // post route
-// app.post('/addEntry', (req, res) => {
-//   newEntry = {
-//     temperature: req.body.temperature,
-//     city: req.body.city,
-//     date: req.body.date,
-//     userresponse: req.body.userresponse,
-//   };
-//   projectData = newEntry;
-// });
 
 app.post('/results', async function (req,res) {
   let d = new Date()
@@ -58,7 +44,6 @@ app.post('/results', async function (req,res) {
   let data = await response.json()
   console.log(data)
 
-  // const evaluation = {}
   evaluation.lat = data.geonames[0].lat
   evaluation.lng = data.geonames[0].lng
   evaluation.city = data.geonames[0].name
@@ -106,7 +91,7 @@ app.post('/results', async function (req,res) {
     // Pixabay pics
   try {
     const pics_key = process.env.API_KEY_PICS
-    const baseURLPics = `https://pixabay.com/api/?key=${pics_key}&q=${evaluation.city}+${evaluation.country}`
+    const baseURLPics = `https://pixabay.com/api/?key=${pics_key}&q=${evaluation.country}+${evaluation.city}`
     let cityPics = await fetch(baseURLPics)
     let picsData = await cityPics.json()
     console.log(picsData.hits[1].webformatURL)
@@ -114,12 +99,20 @@ app.post('/results', async function (req,res) {
     evaluation.currentPic = picsData.hits[1].webformatURL
 
 } catch(error) {
-  let sum = (a, b) => a + b
-  console.log(sum(2,3))}
+  const pics_key = process.env.API_KEY_PICS
+  const baseURLPics = `https://pixabay.com/api/?key=${pics_key}&q=${evaluation.country}`
+  let cityPics = await fetch(baseURLPics)
+  let picsData = await cityPics.json()
+  console.log(picsData.hits[1].webformatURL)
+
+  evaluation.currentPic = picsData.hits[1].webformatURL
+}
 
   res.send(evaluation)
 
 })
+
+console.log(evaluation)
 
 
 app.listen(4041, function () {

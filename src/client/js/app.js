@@ -18,17 +18,22 @@ function genAnswer(event) {
           })
           .then(res => res.json())
           .then(function(res) {
-            document.getElementById('data_title').innerHTML = 'Your trip to: ' + res.city + ' , ' + res.country;
+            document.getElementById('data_title').innerHTML = '<h2>' +res.city + ' , ' + res.country + '</h2>' + '...is waiting for you!'
             document.getElementById('date').innerHTML = 'date: ' + res.date;
             document.getElementById('city').innerHTML = 'longitude: ' + res.lng;
             document.getElementById('temp').innerHTML = 'latitude: ' + res.lat;
             document.getElementById('content').innerHTML = 'your departure date: ' + depDate;
             document.getElementById('max_temp').innerHTML = 'Max temp: ' + res.tempMax + ' expected weather: ' + res.weatherDesc;
+            // let str = res.weatherDesc;
+            // if (str.includes('cloud') {} else if (str.includes('snow') {} else if (str.includes('sun'))
             document.getElementById('countdown').innerHTML = 'There are only ' + res.difference + ' days left to your trip'
             document.getElementById('img').innerHTML = '<img src="' + res.currentPic + '" alt="" id="img_small">'
             console.log(res)
           })
 //        else {window.alert('Invalid url')}
 }
+
+// const weatherIcons() => {let str = res.weatherDesc;
+            // if (str.includes('cloud') == true) {} else if (str.includes('snow') == true {} else if (str.includes('sun') == true) {} else if (str.includes('snow') == true)
 
 export { genAnswer }
