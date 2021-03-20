@@ -67,11 +67,12 @@ app.post('/results', async function (req,res) {
   const weath_key = process.env.API_KEY_WEATHER
   const baseURL_two = `http://api.weatherbit.io/v2.0/forecast/daily?&lat=${evaluation.lat}&lon=${evaluation.lng}&key=${weath_key}`
   const baseURL_three = `https://api.weatherbit.io/v2.0/current?&lat=${evaluation.lat}&lon=${evaluation.lng}&key=${weath_key}&include=minutely`
-  if(daysDelta >= 6){
+  if(evaluation.difference >= 6){
     let newResponse = await fetch(baseURL_two)
     let weathData = await newResponse.json()
     console.log(weathData.data[1])
     evaluation.tempMax = weathData.data[1].max_temp
+    evaluation.tempMin = weathData.data[1].min_temp
     evaluation.weatherDesc = weathData.data[1].weather.description
 
     // res.send(evaluation)
@@ -81,7 +82,9 @@ app.post('/results', async function (req,res) {
     let newResponse = await fetch(baseURL_three)
     let weathData = await newResponse.json()
     console.log(weathData.data[0])
+    console.log(weathData.data[1])
     evaluation.tempMax = weathData.data[0].temp
+    evaluation.weatherDesc = weathData.data[0].weather.description
 
     // res.send(evaluation)
 

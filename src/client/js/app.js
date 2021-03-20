@@ -1,3 +1,9 @@
+import imgSun from '../media/sun-regular.png';
+import imgCloud from '../media/cloud-solid.png';
+import imgSnow from '../media/snowflake-solid.png';
+import imgRain from '../media/umbrella-solid.png';
+
+
 function genAnswer(event) {
     event.preventDefault()
 
@@ -18,22 +24,42 @@ function genAnswer(event) {
           })
           .then(res => res.json())
           .then(function(res) {
-            document.getElementById('data_title').innerHTML = '<h2>' +res.city + ' , ' + res.country + '</h2>' + '...is waiting for you!'
+            document.getElementById('data_title').innerHTML = '<h2>' +res.city + ' , ' + res.country + '...is waiting for you!'  + '</h2>'
             document.getElementById('date').innerHTML = 'date: ' + res.date;
-            document.getElementById('city').innerHTML = 'longitude: ' + res.lng;
-            document.getElementById('temp').innerHTML = 'latitude: ' + res.lat;
+            document.getElementById('longitude').innerHTML = 'longitude: ' + res.lng;
+            document.getElementById('latitude').innerHTML = 'latitude: ' + res.lat;
             document.getElementById('content').innerHTML = 'your departure date: ' + depDate;
-            document.getElementById('max_temp').innerHTML = 'Max temp: ' + res.tempMax + ' expected weather: ' + res.weatherDesc;
+            if(res.difference >= 6){document.getElementById('weath_data').innerHTML = '<h3>expected weather:</h3>' + 'MAX: ' + res.tempMax + ' MIN:' + res.tempMin + res.weatherDesc;}
+            else {document.getElementById('weath_data').innerHTML = '<h3>actual weather:</h3>' + 'ACTUAL TEMP: ' + res.tempMax + res.weatherDesc;}
             // let str = res.weatherDesc;
             // if (str.includes('cloud') {} else if (str.includes('snow') {} else if (str.includes('sun'))
             document.getElementById('countdown').innerHTML = 'There are only ' + res.difference + ' days left to your trip'
             document.getElementById('img').innerHTML = '<img src="' + res.currentPic + '" alt="" id="img_small">'
+            const weatherIcons = () => {
+              let str = res.weatherDesc.toLowerCase()
+              console.log(str)
+              if (str.includes('cloud') == true) {
+                document.getElementById('weirdIconTests').innerHTML =
+                '<img src="' + imgCloud + '" alt="">'
+              } else if (str.includes('sun') == true) {
+                document.getElementById('weirdIconTests').innerHTML =
+                '<img src="' + imgSun + '" alt="">'
+              } else if (str.includes('rain') == true) {
+                document.getElementById('weirdIconTests').innerHTML =
+                '<img src="' + imgRain + '" alt="">'
+              } else if (str.includes('snow') == true) {
+                document.getElementById('weirdIconTests').innerHTML =
+                '<img src="' + imgSnow + '" alt="">' }
+              }
+            weatherIcons();
             console.log(res)
           })
 //        else {window.alert('Invalid url')}
 }
 
-// const weatherIcons() => {let str = res.weatherDesc;
-            // if (str.includes('cloud') == true) {} else if (str.includes('snow') == true {} else if (str.includes('sun') == true) {} else if (str.includes('snow') == true)
+// function to upload weather icons
+
+
+          // } else if (str.includes('rain') == true)
 
 export { genAnswer }

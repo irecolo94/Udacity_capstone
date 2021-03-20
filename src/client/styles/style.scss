@@ -114,6 +114,10 @@ img {
   max-width: 400px;
   max-height: 400px;
 }
+
+#weirdIconTests {
+  img {width: 4em;}
+}
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
