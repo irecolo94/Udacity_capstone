@@ -10,42 +10,43 @@
 
 <body>
   <div id="app">
-    <div class="holder headline">
-      <h1>Travel App</h1>
-    </div>
-    <div class="holder zip">
-      <label for="zip">Where are you going?</label>
-      <input type="text" id="zip" placeholder="enter your destination here">
-      <label for="feelings">When are you leaving?</label>
-      <input type="date" class="myInput" id="feelings" placeholder="Enter the date here"></input>
-      <button id="generate" type="submit" name = "" value="submit" onclick="return Client.genAnswer(event)" onsubmit="return genAnswer(event)" > Let's go! </button>
-    </div>
-    <div class="holder entry">
-      <div class="title" id="data_title">...is waiting for you!</div>
-      <div id="entry_holder">
-        <div id="img">
-          <img src="" alt="" id="img_small">
-        </div>
-        <div class="info">
-          <div id="date"></div>
-          <div id="longitude"></div>
-          <div id="latitude"></div>
-          <div id="content"></div>
-          <div id="countdown"></div>
-        </div>
-        <div class="weather">
-          <div id="weath_data">
-            <div id="temp_max"></div>
-            <div id="temp_min"></div>
+      <div class="holder headline">
+        <h1>Travel App</h1>
+      </div>
+      <div class="holder zip">
+        <label for="zip">Where are you going?</label>
+        <input type="text" id="zip" placeholder="enter your destination here">
+        <label for="feelings">When are you leaving?</label>
+        <input type="date" class="myInput" id="feelings" placeholder="Enter the date here"></input>
+        <button id="generate" type="submit" name = "" value="submit" onclick="return Client.genAnswer(event)" onsubmit="return genAnswer(event)" > Let's go! </button>
+      </div>
+      <div class="holder entry" id='new_trip'>
+        <div class="title" id="data_title">...is waiting for you!</div>
+        <div id="entry_holder">
+          <div id="img">
+            <img src="" alt="" id="img_small">
           </div>
-          <div id="weirdIconTests">
-        </div>
+          <div class="info">
+            <div id="date"></div>
+            <div id="longitude"></div>
+            <div id="latitude"></div>
+            <div id="content"></div>
+            <div id="countdown"></div>
+          </div>
+          <div class="weather">
+            <div id="weath_data">
+              <div id="temp_max"></div>
+              <div id="temp_min"></div>
+            </div>
+            <div id="weirdIconTests">
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF(event)" onsubmit="return createPDF(event)"> Save</button>
+      <button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF(event)" onsubmit="return createPDF(event)"> Save</button>
   </div>
-  <!-- <script>
+  <button id="new_trip" type="submit" name="button" value="submit" onclick="return Client.newTrip(event)" onsubmit="return newTrip(event)"> new Trip</button>
+  <script>
   // Check that service workers are supported
   if ('serviceWorker' in navigator) {
       // Use the window load event to keep the page load performant
@@ -53,7 +54,7 @@
           navigator.serviceWorker.register('/service-worker.js');
       });
   }
-</script> -->
+</script>
 </body>
 
 </html>
