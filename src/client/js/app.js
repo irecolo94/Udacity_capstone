@@ -29,8 +29,10 @@ function genAnswer(event) {
             document.getElementById('longitude').innerHTML = 'longitude: ' + res.lng;
             document.getElementById('latitude').innerHTML = 'latitude: ' + res.lat;
             document.getElementById('content').innerHTML = 'your departure date: ' + depDate;
-            if(res.difference >= 6){document.getElementById('weath_data').innerHTML = '<h3>expected weather:</h3>' + 'MAX: ' + res.tempMax + ' MIN:' + res.tempMin + res.weatherDesc;}
-            else {document.getElementById('weath_data').innerHTML = '<h3>actual weather:</h3>' + 'ACTUAL TEMP: ' + res.tempMax + res.weatherDesc;}
+            if(res.difference >= 6){
+              document.getElementById('weath_data').innerHTML = /*'<h3>expected weather:</h3>' + */'<div id="temp_max">' + res.tempMax + '°</div>' + '<div id="temp_min">' + res.tempMin + '°</div>'
+            }
+            else {document.getElementById('weath_data').innerHTML = /*'<h3>actual weather:</h3>' + */ '<div id="temp_max">' + res.temp + '°</div>'}
             // let str = res.weatherDesc;
             // if (str.includes('cloud') {} else if (str.includes('snow') {} else if (str.includes('sun'))
             document.getElementById('countdown').innerHTML = 'There are only ' + res.difference + ' days left to your trip'

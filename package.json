@@ -18,6 +18,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "file-loader": "^6.2.0",
+    "jspdf": "^2.3.1",
+    "html2canvas": "^1.0.0-rc.7",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
   },

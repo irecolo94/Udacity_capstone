@@ -34,14 +34,26 @@
           <div id="countdown"></div>
         </div>
         <div class="weather">
-          <div id="weath_data"></div>
+          <div id="weath_data">
+            <div id="temp_max"></div>
+            <div id="temp_min"></div>
+          </div>
           <div id="weirdIconTests">
         </div>
         </div>
       </div>
     </div>
+    <button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF(event)" onsubmit="return createPDF(event)"> Save</button>
   </div>
-
+  <script>
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+      });
+  }
+</script>
 </body>
 
 </html>

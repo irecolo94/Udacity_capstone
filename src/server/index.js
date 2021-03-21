@@ -82,8 +82,7 @@ app.post('/results', async function (req,res) {
     let newResponse = await fetch(baseURL_three)
     let weathData = await newResponse.json()
     console.log(weathData.data[0])
-    console.log(weathData.data[1])
-    evaluation.tempMax = weathData.data[0].temp
+    evaluation.temp = weathData.data[0].temp
     evaluation.weatherDesc = weathData.data[0].weather.description
 
     // res.send(evaluation)
