@@ -24,21 +24,25 @@ function genAnswer(event) {
           })
           .then(res => res.json())
           .then(function(res) {
-            document.getElementById('data_title').innerHTML = '<h2>' +res.city + ' , ' + res.country + '...is waiting for you!'  + '</h2>'
-            document.getElementById('date').innerHTML = 'date: ' + res.date;
-            document.getElementById('longitude').innerHTML = 'longitude: ' + res.lng;
-            document.getElementById('latitude').innerHTML = 'latitude: ' + res.lat;
+            console.log(res)
+            const allTrips = Object.values(res)
+            console.log(allTrips)
+            const thisTrip = allTrips[allTrips.length - 1]
+            document.getElementById('data_title').innerHTML = '<h2>' +thisTrip.city + ' , ' + thisTrip.country + '...is waiting for you!'  + '</h2>'
+            document.getElementById('date').innerHTML = 'date: ' + thisTrip.date;
+            document.getElementById('longitude').innerHTML = 'longitude: ' + thisTrip.lng;
+            document.getElementById('latitude').innerHTML = 'latitude: ' + thisTrip.lat;
             document.getElementById('content').innerHTML = 'your departure date: ' + depDate;
-            if(res.difference >= 6){
-              document.getElementById('weath_data').innerHTML = /*'<h3>expected weather:</h3>' + */'<div id="temp_max">' + res.tempMax + '°</div>' + '<div id="temp_min">' + res.tempMin + '°</div>'
+            if(thisTrip.difference >= 6){
+              document.getElementById('weath_data').innerHTML = /*'<h3>expected weather:</h3>' + */'<div id="temp_max">' + thisTrip.tempMax + '°</div>' + '<div id="temp_min">' + thisTrip.tempMin + '°</div>'
             }
-            else {document.getElementById('weath_data').innerHTML = /*'<h3>actual weather:</h3>' + */ '<div id="temp_max">' + res.temp + '°</div>'}
-            // let str = res.weatherDesc;
+            else {document.getElementById('weath_data').innerHTML = /*'<h3>actual weather:</h3>' + */ '<div id="temp_max">' + thisTrip.temp + '°</div>'}
+            // let str = thisTrip.weatherDesc;
             // if (str.includes('cloud') {} else if (str.includes('snow') {} else if (str.includes('sun'))
-            document.getElementById('countdown').innerHTML = 'There are only ' + res.difference + ' days left to your trip'
-            document.getElementById('img').innerHTML = '<img src="' + res.currentPic + '" alt="" id="img_small">'
+            document.getElementById('countdown').innerHTML = 'There are only ' + thisTrip.difference + ' days left to your trip'
+            document.getElementById('img').innerHTML = '<img src="' + thisTrip.currentPic + '" alt="" id="img_small">'
             const weatherIcons = () => {
-              let str = res.weatherDesc.toLowerCase()
+              let str = thisTrip.weatherDesc.toLowerCase()
               console.log(str)
               if (str.includes('cloud') == true) {
                 document.getElementById('weirdIconTests').innerHTML =

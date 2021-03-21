@@ -6,9 +6,9 @@ var path = require('path')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 const fetch = require('node-fetch')
+const { v4: uuidv4 } = require('uuid');
 // Start up an instance of app
-
-const evaluation = {}
+const projectData = {}
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 const app = express()
@@ -43,6 +43,14 @@ app.post('/results', async function (req,res) {
   let response = await fetch(baseURL)
   let data = await response.json()
   console.log(data)
+
+  uuid = uuidv4();
+  console.log(uuid);
+
+  const evaluation = {}
+
+  evaluation.test = 'banana'
+  console.log(evaluation)
 
   evaluation.lat = data.geonames[0].lat
   evaluation.lng = data.geonames[0].lng
@@ -110,11 +118,18 @@ app.post('/results', async function (req,res) {
   evaluation.currentPic = picsData.hits[1].webformatURL
 }
 
-  res.send(evaluation)
+  projectData[uuid] = evaluation;
+
+  const allTrips = Object.values(projectData)
+  const thisTrip = allTrips[allTrips.length - 1]
+  console.log(thisTrip)
+
+  console.log(projectData);
+  res.send(projectData)
 
 })
 
-console.log(evaluation)
+console.log(projectData)
 
 
 app.listen(4041, function () {

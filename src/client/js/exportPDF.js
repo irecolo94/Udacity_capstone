@@ -4,10 +4,9 @@ import html2canvas from 'html2canvas'
 function createPDF(event) {
     // event.preventDefault()
     console.log("fuck!")
-    const domElement = document.body
+    const domElement = document.getElementById('app')
     html2canvas(domElement, { onclone: (document) => {
       document.getElementById('save_pdf').style.visibility = 'hidden';
-      allowTaint: true;
 }})
     .then((canvas) => {
         const img = canvas.toDataURL('image/jpeg')
