@@ -50,6 +50,7 @@ app.post('/results', async function (req,res) {
   const evaluation = {}
 
   evaluation.test = 'banana'
+  evaluation.uid = uuid
   console.log(evaluation)
 
   evaluation.lat = data.geonames[0].lat
@@ -65,7 +66,7 @@ app.post('/results', async function (req,res) {
   console.log((new Date(evaluation.departure)).getMonth())
   console.log(d)
   let departureDateMS = new Date(evaluation.departure).getTime()
-  const daysDelta = Math.abs(departureDateMS - d.getTime())
+  const daysDelta = departureDateMS - d.getTime()
   console.log(daysDelta)
   evaluation.difference = Math.ceil(daysDelta / (1000 * 60 * 60 *24));
 

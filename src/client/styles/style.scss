@@ -97,7 +97,7 @@ h1 {
   font-size: 36px;
 }
 
-#data_title {
+.data_title {
   margin-bottom: 1em;
   h2 {
       font: 100% $font-head;
@@ -105,7 +105,7 @@ h1 {
     }
 }
 
-#entry_holder {
+.entry_holder {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -122,11 +122,11 @@ img {
   flex-direction: row;
   align-items: center;
 }
-#weath_data {
+.weath_data {
   font-size: 1.5em;
 }
 
-#weirdIconTests {
+.weirdIconTests {
   img {width: 4em;}
 }
 /* Reset style for HTML element on active to have no border*/

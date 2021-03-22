@@ -20,8 +20,8 @@
         <input type="date" class="myInput" id="feelings" placeholder="Enter the date here"></input>
         <button id="generate" type="submit" name = "" value="submit" onclick="return Client.genAnswer(event)" onsubmit="return genAnswer(event)" > Let's go! </button>
       </div>
-      <div class="holder entry" id='new_trip'>
-        <div class="title" id="data_title">...is waiting for you!</div>
+      <div class="holder entry" id='all_trip'>
+        <!-- <div class="title" id="data_title">...is waiting for you!</div>
         <div id="entry_holder">
           <div id="img">
             <img src="" alt="" id="img_small">
@@ -41,11 +41,14 @@
             <div id="weirdIconTests">
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF(event)" onsubmit="return createPDF(event)"> Save</button>
   </div>
   <button id="new_trip" type="submit" name="button" value="submit" onclick="return Client.newTrip(event)" onsubmit="return newTrip(event)"> new Trip</button>
+  <div id="old_trips">
+
+  </div>
   <script>
   // Check that service workers are supported
   if ('serviceWorker' in navigator) {
