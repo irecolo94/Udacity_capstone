@@ -1,6 +1,6 @@
 import { genAnswer } from './js/app'
 import { createPDF } from './js/exportPDF'
-import { deleteTrip } from './js/addNew'
+import { deleteTrip } from './js/deleteTrip'
 
 import './styles/style.scss'
 

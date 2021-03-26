@@ -28,11 +28,14 @@ console.log(__dirname)
 // Setup Server
 
 // SET UP routes
+
 // get route
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
+
+// POST ROUTE FOR API CALLS
 
 app.post('/results', async function (req,res) {
   let d = new Date()
@@ -44,8 +47,9 @@ app.post('/results', async function (req,res) {
   let data = await response.json()
   console.log(data)
 
+// Define Unique ID for each trip
   uuid = uuidv4();
-  console.log(uuid);
+  // console.log(uuid);
 
   const evaluation = {}
 
@@ -59,7 +63,6 @@ app.post('/results', async function (req,res) {
   evaluation.country = data.geonames[0].countryName
   evaluation.date = newDate
   evaluation.departure = req.body.future
-  // evaluation.userresponse: newFeel
 
   console.log(baseURL)
   console.log(evaluation)
@@ -133,13 +136,19 @@ app.post('/results', async function (req,res) {
 console.log(projectData)
 
 
+
+// Post route for deleting trips 
+app.post('/delete', async function(req, res) {
+  console.log(req.body.url)
+  const toDelete = req.body.url
+  console.log(projectData[toDelete])
+  delete projectData[toDelete]
+})
+
+console.log(`Your API key is ${process.env.API_KEY}`);
+
 app.listen(4041, function () {
   console.log('Example app listening on port 4041!')
 })
 
-
-// app.post('/delete', async function(req, res) => {
-//
-// })
-// console.log(`Your API key is ${apiKey}`)
-console.log(`Your API key is ${process.env.API_KEY}`);
+module.exports = {app}
