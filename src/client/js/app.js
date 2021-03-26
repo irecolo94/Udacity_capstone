@@ -77,20 +77,21 @@ function genAnswer(event) {
                   let str = `${trip.weatherDesc}`.toLowerCase()
                   console.log(str)
                   if (str.includes('cloud') == true) {
-                pieceDrei = '<div class="weirdIconTests"><img src="' + imgCloud + '" alt=""></div></div></div></div></div>'
+                pieceDrei = '<div class="weirdIconTests"><img src="' + imgCloud + '" alt=""></div></div></div></div>'
 
                   } else if (str.includes('sun') == true) {
                     pieceDrei =
-                    '<div class="weirdIconTests"><img src="' + imgSun + '" alt=""></div></div></div></div></div>'
+                    '<div class="weirdIconTests"><img src="' + imgSun + '" alt=""></div></div></div></div>'
                   } else if (str.includes('rain') == true) {
-                    pieceDrei =   '<div class="weirdIconTests"><img src="' + imgRain + '" alt=""></div></div></div></div></div>'
+                    pieceDrei =   '<div class="weirdIconTests"><img src="' + imgRain + '" alt=""></div></div></div></div>'
                   } else if (str.includes('snow') == true) {
-                    pieceDrei =   '<div class="weirdIconTests"><img src="' + imgSnow + '" alt=""></div></div></div></div></div>'
+                    pieceDrei =   '<div class="weirdIconTests"><img src="' + imgSnow + '" alt=""></div></div></div></div>'
                   }
                 }
                 weatherIcons();
 
-                let pieceVier = '<button data-name=' + mo + ' type="submit" name="button" value="submit" onclick="return Client.deleteTrip()" class="button_delete"> new Trip</button>'
+                let pieceVier = `<button data-name='${mo}' type="submit" name="button" value="submit" onClick="return Client.deleteTrip('${mo}')" class="button_delete"> new Trip</button></div>`
+
 
                   const all = pieceEins + pieceZwei + pieceDrei + pieceVier
 
@@ -141,6 +142,7 @@ function genAnswer(event) {
             });
             app.innerHTML = tripcard
             old.innerHTML = expiredTrips
+
             // const thisTrip = allTrips[allTrips.length - 1]
             // document.getElementById('data_title').innerHTML = '<h2>' +thisTrip.city + ' , ' + thisTrip.country + '...is waiting for you!'  + '</h2>'
             // document.getElementById('date').innerHTML = 'date: ' + thisTrip.date;
