@@ -1,7 +1,7 @@
-import imgSun from '../media/sun-regular.png';
-import imgCloud from '../media/cloud-solid.png';
-import imgSnow from '../media/snowflake-solid.png';
-import imgRain from '../media/umbrella-solid.png';
+import imgSun from '../media/sun.png';
+import imgCloud from '../media/cloud.png';
+import imgSnow from '../media/snow.png';
+import imgRain from '../media/umbrella.png';
 
 
 function genAnswer(event) {
@@ -73,20 +73,20 @@ function genAnswer(event) {
             let str = `${trip.weatherDesc}`.toLowerCase()
             console.log(str)
             if (str.includes('cloud') == true) {
-              pieceDrei = '<div class="weirdIconTests"><img src="' + imgCloud + '" alt=""></div></div></div>'
+              pieceDrei = '<div class="weirdIconTests"><img src="' + imgCloud + '" alt=""></div>'
 
-            } else if (str.includes('sun') == true) {
+            } else if (str.includes('sun') == true || str.includes('clear') == true) {
               pieceDrei =
-                '<div class="weirdIconTests"><img src="' + imgSun + '" alt=""></div></div></div>'
+                '<div class="weirdIconTests"><img src="' + imgSun + '" alt=""></div>'
             } else if (str.includes('rain') == true) {
-              pieceDrei = '<div class="weirdIconTests"><img src="' + imgRain + '" alt=""></div></div></div>'
+              pieceDrei = '<div class="weirdIconTests"><img src="' + imgRain + '" alt=""></div>'
             } else if (str.includes('snow') == true) {
-              pieceDrei = '<div class="weirdIconTests"><img src="' + imgSnow + '" alt=""></div></div></div>'
+              pieceDrei = '<div class="weirdIconTests"><img src="' + imgSnow + '" alt=""></div>'
             }
           }
           weatherIcons();
 
-          let pieceVier = `<button data-name='${mo}' type="submit" name="button" value="submit" onClick="return Client.deleteTrip('${mo}')" class="button_delete">remove Trip</button><button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF('${mo}')" onsubmit="return createPDF('${mo}')"> Save</button></div>`
+          let pieceVier = `</div></div></div><button data-name='${mo}' type="submit" name="button" value="submit" onClick="return Client.deleteTrip('${mo}')" class="button_delete">remove Trip</button><button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF('${mo}')" onsubmit="return createPDF('${mo}')"> Save</button></div>`
 
 
           const all = pieceEins + pieceZwei + pieceDrei + pieceVier
