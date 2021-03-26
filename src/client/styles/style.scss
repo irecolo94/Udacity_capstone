@@ -47,12 +47,15 @@ body {
 
 .entry {
   background: $color-background;
-  border: 1px solid $color-borders;
-  border-radius: 10px;
   grid-area: entry;
   width: auto;
   text-align: center;
   padding: 1em;
+}
+
+.card_container {
+  border: 1px solid $color-borders;
+  border-radius: 10px;
 }
 
 .zip {

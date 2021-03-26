@@ -2,6 +2,7 @@ import imgSun from '../media/sun-regular.png';
 import imgCloud from '../media/cloud-solid.png';
 import imgSnow from '../media/snowflake-solid.png';
 import imgRain from '../media/umbrella-solid.png';
+import deleteTrip from './addNew'
 
 
 function genAnswer(event) {
@@ -33,10 +34,17 @@ function genAnswer(event) {
             let tripcard = '';
             let expiredTrips = '';
             allTrips.forEach((trip) => {
-              if(document.getElementById(`"${trip.uid}"`) == null && `${trip.difference}` >= 0) {
-                let pieceEins = `<div class="title data_title" id="${trip.uid}">...is waiting for you!<h2> ${trip.city} , ${trip.country} ...is waiting for you! on the ${trip.departure}</h2></div> <div class="entry_holder">
+              if(document.getElementById(`"${trip.uid}"`) == null && trip.difference >= 0) {
+                const mo = trip.uid
+                console.log(mo)
+                function get(one) {console.log(one)}
+                get(mo)
+
+                let pieceEins = `<div class ="card_container" id="${trip.uid}">
+                <div class="title data_title"><h2> ${trip.city} , ${trip.country} ...is waiting for you! on the ${trip.departure}</h2></div>
+                <div class="entry_holder">
                     <div class="img">
-                      <img src="${trip.currentPic}" alt="" class="img_small">
+                      <img src="${trip.currentPic}" alt="" class="img_small" crossorigin="anonymous">
                     </div>
                     <div class="info">
                       <div class="date"> date: ${trip.date}</div>
@@ -45,31 +53,47 @@ function genAnswer(event) {
                       <div class="content"></div>
                       <div class="countdown">There are only ${trip.difference} days left to your trip!</div>
                     </div>
-                    <div class="weather">
-                      <div class="weath_data">
-                        <h3>expected weather:</h3>
-                        <div class="temp_max">${trip.tempMax}° </div>
-                        <div class="temp_min">${trip.tempMin}°</div>
                       ` // bis weath_data
                 let pieceZwei = '';
+
+                const whichWeather = () => {
+                  if(`${trip.difference}` < 7) {
+                  pieceZwei = `<div class="weather">
+                  <div class="weath_data">
+                  <h4>expected weather:</h4><div class="temp">${trip.temp}°</div></div>`
+                } else if(`${trip.difference}` >= 7) {
+                  pieceZwei = `<div class="weather">
+                              <div class="weath_data">
+                                <h4>expected weather:</h4>
+                                <div class="temp_max">${trip.tempMax}° </div>
+                                <div class="temp_min">${trip.tempMin}°</div></div>`
+                }}
+
+                whichWeather();
+
+                let pieceDrei = '';
 
                 const weatherIcons = () => {
                   let str = `${trip.weatherDesc}`.toLowerCase()
                   console.log(str)
                   if (str.includes('cloud') == true) {
-                pieceZwei = '<div class="weirdIconTests"><img src="' + imgCloud + '" alt=""></div></div></div></div>'
+                pieceDrei = '<div class="weirdIconTests"><img src="' + imgCloud + '" alt=""></div></div></div></div></div>'
 
                   } else if (str.includes('sun') == true) {
-                    pieceZwei =
-                    '<div class="weirdIconTests"><img src="' + imgSun + '" alt=""></div></div></div></div>'
+                    pieceDrei =
+                    '<div class="weirdIconTests"><img src="' + imgSun + '" alt=""></div></div></div></div></div>'
                   } else if (str.includes('rain') == true) {
-                    pieceZwei =   '<div class="weirdIconTests"><img src="' + imgRain + '" alt=""></div></div></div></div>'
+                    pieceDrei =   '<div class="weirdIconTests"><img src="' + imgRain + '" alt=""></div></div></div></div></div>'
                   } else if (str.includes('snow') == true) {
-                    pieceZwei =   '<div class="weirdIconTests"><img src="' + imgSnow + '" alt=""></div></div></div></div>'
+                    pieceDrei =   '<div class="weirdIconTests"><img src="' + imgSnow + '" alt=""></div></div></div></div></div>'
                   }
                 }
                 weatherIcons();
-                  const all = pieceEins + pieceZwei
+
+                let pieceVier = '<button data-name=' + mo + ' type="submit" name="button" value="submit" onclick="return Client.deleteTrip()" class="button_delete"> new Trip</button>'
+
+                  const all = pieceEins + pieceZwei + pieceDrei + pieceVier
+
                   tripcard += all
                   // tripcard += `<div class="title data_title" id="${trip.uid}">...is waiting for you!<h2> ${trip.city} , ${trip.country} ...is waiting for you! on the ${trip.departure}</h2></div> <div class="entry_holder">
                   //     <div class="img">

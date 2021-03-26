@@ -1,6 +1,6 @@
 import { genAnswer } from './js/app'
 import { createPDF } from './js/exportPDF'
-import { newTrip} from './js/addNew'
+import { deleteTrip } from './js/addNew'
 
 import './styles/style.scss'
 
@@ -12,4 +12,4 @@ console.log(createPDF)
 
 export { genAnswer }
 export { createPDF }
-export { newTrip }
+export { deleteTrip }

@@ -76,7 +76,7 @@ app.post('/results', async function (req,res) {
   const weath_key = process.env.API_KEY_WEATHER
   const baseURL_two = `http://api.weatherbit.io/v2.0/forecast/daily?&lat=${evaluation.lat}&lon=${evaluation.lng}&key=${weath_key}`
   const baseURL_three = `https://api.weatherbit.io/v2.0/current?&lat=${evaluation.lat}&lon=${evaluation.lng}&key=${weath_key}&include=minutely`
-  if(evaluation.difference >= 6){
+  if(evaluation.difference >= 7){
     let newResponse = await fetch(baseURL_two)
     let weathData = await newResponse.json()
     console.log(weathData.data[1])
@@ -136,5 +136,10 @@ console.log(projectData)
 app.listen(4041, function () {
   console.log('Example app listening on port 4041!')
 })
+
+
+// app.post('/delete', async function(req, res) => {
+//
+// })
 // console.log(`Your API key is ${apiKey}`)
 console.log(`Your API key is ${process.env.API_KEY}`);
