@@ -12,18 +12,23 @@
   <div id="app">
     <div class="holder headline">
       <h1>Travel App</h1>
+      <p>Are you looking for some information about the location you are visiting? <br> Just enter the destination city and the departure date below! <br> Add as many trips as you want!</p>
     </div>
     <div class="holder zip">
-      <label for="zip">Where are you going?</label>
-      <input type="text" id="destination" placeholder="enter your destination here">
-      <label for="feelings">When are you leaving?</label>
-      <input type="date" class="myInput" id="dep_date" placeholder="Enter the date here"></input>
+      <div class="">
+        <label for="zip">Where are you going?</label>
+        <input type="text" id="destination" placeholder="enter your destination here">
+      </div>
+      <div class="">
+        <label for="feelings">When are you leaving?</label>
+        <input type="date" class="myInput" id="dep_date" placeholder="Enter the date here"></input>
+      </div>
       <button id="generate" type="submit" name="" value="submit" onclick="return Client.genAnswer(event)" onsubmit="return genAnswer(event)"> Let's go! </button>
     </div>
     <div class="holder entry" id='all_trip'>
     </div>
+    <div id="old_trips"></div>
   </div>
-  <div id="old_trips"></div>
   <script>
     // Check that service workers are supported
     if ('serviceWorker' in navigator) {

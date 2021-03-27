@@ -1,71 +1,74 @@
+/*IMPORTS:*/
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&family=Staatliches&display=swap');
+
+/*VARIABLES:*/
 $font-head: Staatliches, cursive;
 $font-form: Maven Pro, sans-serif;
 $primary-color: #F5F7F9;
-$color-background: #d0efff;
+$color-background: #96BFFF;
 $color-text: #03254c;
 $color-borders: #2a9df4;
+$expired-grey: #ebedf3;
+$margin-card: 1em 1.5em;
 
+
+/*BASIC STRUCTURE:*/
 body {
-  background: $color-background;
+  background-image: linear-gradient($color-background, white);
   font: 100% $font-form;
-  // font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-repeat: no-repeat;
 }
 
 #app {
   display: grid;
-  grid-template-columns: 10% 40% 40% 10%;
-  grid-template-rows: 20% auto auto auto;
-  grid-template-areas:
-    "lo head head fi"
-    "lo zip zip fi"
-    "lo entry entry fi"
-    "lo none none fi";
+  grid-template-columns: 10% auto 10%;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas: "lo head fi" "lo zip fi" "lo entry fi" "lo old fi";
   justify-content: center;
   grid-row-gap: 1em;
-  grid-column-gap: 1em;
   font-size: 20px;
   font: 100% $font-form;
   color: $color-text;
 }
 
-// HEADS:
+/*HEADER:*/
 .headline {
   grid-area: head;
   font: 100% $font-head;
   text-align: center;
   align-self: center;
+  justify-self: center;
+
   h1 {
     font-size: 3em;
+  };
+  p{
+    margin-top: 0;
+    border-top: 1px solid $color-borders;
+    border-bottom: 1px solid $color-borders;
   }
 }
 
-
-// FORM:
-
-
-
-.entry {
-  background: $color-background;
-  grid-area: entry;
-  width: auto;
-  text-align: center;
-  padding: 1em;
-}
-
-.card_container {
-  border: 1px solid $color-borders;
-  border-radius: 10px;
-}
-
+/*FORM:*/
 .zip {
   grid-area: zip;
-  align-self: center;
+  justify-self: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  div {
+    margin: 0 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  };
+
+  button {
+    margin-top: 25px;
+  }
 }
 
-/*  Basic Styling To Override Default For Basic HTML Elements */
 label {
   display: block;
   font-size: 1em;
@@ -85,61 +88,125 @@ input {
 button {
   height: 2em;
   border-radius: 10px;
-  margin-top: 0.5em;
+  margin: 0.5em;
   background: #3b4a6b;
   color: #fffff8;
   font-size: 26px;
   font: 100% $font-form;
   border: 1px solid black;
+  align-self: center;
+
   &:hover {
     background-color: $color-borders;
   }
 }
 
+/*TRIP CARDS STYLES:*/
+.entry {
+  grid-area: entry;
+  width: auto;
+  text-align: center;
+  padding: 1em;
+}
+
+.card_container {
+  border: 2px solid $color-borders;
+  border-radius: 10px;
+  background-color: #e0ecff;
+  margin: 0.5em 0;
+  padding: 0.5em;
+}
+
+/*card head styling:*/
 h1 {
   font-size: 36px;
 }
 
 .data_title {
   margin-bottom: 1em;
+
   h2 {
-      font: 100% $font-head;
-      font-size: 1.5em;
-    }
+    font: 100% $font-head;
+    font-size: 2em;
+  }
 }
 
+/*information styling:*/
 .entry_holder {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
+.img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: $margin-card;
+}
+
 img {
-  max-width: 400px;
-  max-height: 400px;
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+
+.content {
+  h4 {
+    margin: 0;
+  };
+  margin: $margin-card;
 }
 
 .weather {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  margin: $margin-card;
 }
+
 .weath_data {
   font-size: 1.5em;
+
+  h6 {
+    margin: 0;
+  }
 }
 
 .weirdIconTests {
-  img {width: 4em;}
-}
-/* Reset style for HTML element on active to have no border*/
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
+  img {
+    width: 6em;
+  }
 }
 
+/*EXPIRED TRIPS:*/
+#old_trips {
+  grid-area: old;
+
+  .expired {
+    background-color: $expired-grey;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    button {
+      background-color: grey;
+      &:hover {
+        background-color: $color-borders;
+      }
+    }
+  }
+}
+/* Reset style for HTML element on active to have no border*/
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
 /* Style for Placeholder Text*/
 ::placeholder {
   /* Firefox, Chrome, Opera */
@@ -160,20 +227,62 @@ button:focus {
 }
 
 /* RESPONSIVE FOR SMALL SCREEN */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   #app {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
-    grid-template-areas:
-      "head"
-      "zip"
-      "feel"
-      "entry";
+    grid-template-areas: "head" "zip" "entry" "old";
     justify-content: center;
     grid-row-gap: 1em;
     grid-column-gap: 1em;
     font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+  }
+
+  .zip {
+    flex-direction: column;
+  }
+
+  .entry_holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+#old_trips {
+  .expired {
+    display: flex;
+    flex-direction: column;
+  }}
+
+}
+
+/* RESPONSIVE FOR MEDIUM SCREEN */
+@media (min-width: 768px) and (max-width: 1000px) {
+  #app {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "head" "zip" "entry" "old";
+    justify-content: center;
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+    font-size: 20px;
+  }
+
+  .img {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: $margin-card;
+  }
+
+  img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
   }
 }

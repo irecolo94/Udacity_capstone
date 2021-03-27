@@ -1,17 +1,20 @@
+// IMPORT IMAGES
 import imgSun from '../media/sun.png';
 import imgCloud from '../media/cloud.png';
 import imgSnow from '../media/snow.png';
 import imgRain from '../media/umbrella.png';
 
-
+//MAIN FUNCTION
 function genAnswer(event) {
   event.preventDefault()
 
-
+//Select inserted values
   let formText = document.getElementById('destination').value
   let depDate = document.getElementById('dep_date').value;
 
   console.log("::: Form Submitted :::")
+
+  // send user data to server and then fetch projectData
   fetch('http://localhost:4041/results', {
       method: 'POST',
       credentials: 'same-origin',
@@ -24,33 +27,49 @@ function genAnswer(event) {
       })
     })
     .then(res => res.json())
+    .catch(error => alert(error + ' Enter a valid city!'))
     .then(function(res) {
       console.log(res)
+      // select values from the server response
       const allTrips = Object.values(res)
       console.log(allTrips)
+
+      // sort all trips according to the departure date
       allTrips.sort((a, b) => a.difference - b.difference)
+
+      // set up variables to then update HTML of the cards
       const app = document.getElementById('all_trip')
       const old = document.getElementById('old_trips')
       let tripcard = '';
       let expiredTrips = '';
-      allTrips.forEach((trip) => {
+
+      // loop through all trips to update each card
+      allTrips.forEach((trip) => { // if trip not expired yet
         if (document.getElementById(`"${trip.uid}"`) == null && trip.difference > 0) {
-          const mo = trip.uid
+          const thisID = trip.uid
 
           let pieceEins = `<div class ="card_container" id="${trip.uid}">
-                <div class="title data_title"><h2> ${trip.city} , ${trip.country} ...is waiting for you!</h2></div>
+                <div class="title data_title"><h2><u>${trip.city}</u> is waiting for you!</h2></div>
                 <div class="countdown">There are only ${trip.difference} days left to your trip!</div>
+                <div class="date">departure date: ${trip.departure}</div>
                 <div class="entry_holder">
                     <div class="img">
-                      <img src="${trip.currentPic}" alt="" class="img_small" crossorigin="anonymous">
+                      <img src="${trip.currentPic}" alt="" class="img_small">
                     </div>
-                    <div class="info">
-                      <div class="date">departure date: ${trip.departure}</div>
-                      <div class="content"></div>
+
+                      <div class="content">
+                        <h4>basic infos - ${trip.countryFullName}</h4>
+                        <p>capital city: ${trip.capital} <br>
+                        population: ${trip.population} <br>
+                        currency: ${trip.currence} <br>
+                        main language: ${trip.language} <br>
+                      </p>
+
                       </div>
-                      ` // bis weath_data
+                      `
           let pieceZwei = '';
 
+          // define two cases for future forecast and actual weather
           const whichWeather = () => {
             if (`${trip.difference}` < 7) {
               pieceZwei = `<div class="weather">
@@ -60,15 +79,14 @@ function genAnswer(event) {
               pieceZwei = `<div class="weather"><div class="weath_data">
                                 <h6>weather forecast</h6>
                                 <div class="weath_desc">${trip.weatherDesc}</div>
-                                <div class="temp_max">${trip.tempMax}° </div>
-                                <div class="temp_min">${trip.tempMin}°</div></div>`
+                                <div class="temp">${trip.tempMax}° ${trip.tempMin}°</div></div>`
             }
           }
 
           whichWeather();
 
           let pieceDrei = '';
-
+          // define cases for weather icons
           const weatherIcons = () => {
             let str = `${trip.weatherDesc}`.toLowerCase()
             console.log(str)
@@ -86,24 +104,29 @@ function genAnswer(event) {
           }
           weatherIcons();
 
-          let pieceVier = `</div></div></div><button data-name='${mo}' type="submit" name="button" value="submit" onClick="return Client.deleteTrip('${mo}')" class="button_delete">remove Trip</button><button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF('${mo}')" onsubmit="return createPDF('${mo}')"> Save</button></div>`
+          // add button to delete trip from client and server
+          // add button to save pdf the trip
+          let pieceVier = `</div></div><button data-name='${thisID}' type="submit" name="button" value="submit" onClick="return Client.deleteTrip('${thisID}')" class="button_delete">remove Trip</button><button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF('${thisID}')" onsubmit="return createPDF('${thisID}')"> Save</button></div>`
 
 
           const all = pieceEins + pieceZwei + pieceDrei + pieceVier
 
           tripcard += all
 
-        } else if (`${trip.difference}` <= 0) {
-          expiredTrips += `<div class="title data_title expired" id="${trip.uid}"><h2> ${trip.city} , ${trip.country} has expired! on the ${trip.departure}</h2></div>`
+        } else if (`${trip.difference}` <= 0) { //user case if trip already expired
+          expiredTrips += `<div class="title data_title expired" id="${trip.uid}">Your trip to:&nbsp; <h4>${trip.city} , ${trip.country}</h4>&nbsp; with departure date &nbsp;<h4>${trip.departure}</h4> &nbsp; has expired!<button data-name='${trip.uid}' type="submit" name="button" value="submit" onClick="return Client.deleteTrip('${trip.uid}')" class="button_delete">remove Trip</button></div>`
         }
 
-      });
+      })
+
+      // update upcomping and expired trips
       app.innerHTML = tripcard
       old.innerHTML = expiredTrips
 
 
       console.log(res)
     })
+
 
 }
 
