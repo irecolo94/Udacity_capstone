@@ -34,12 +34,12 @@ Register on Geonames, Weatherbit, Pixabay. Save API_KEY and encrypt it before us
 
 ## PDF export
 Html2pdf will render a pdf of the selected card.
-IMPORTANT: Pictures won't be printed because of cross origin!
+**IMPORTANT**  Pictures won't be printed because of cross origin!
 
 ## Jest framework for testing
 Set up Jest to test the javascript on the client side.
 Set up Supertest to test the server.
-IMPORTANT: Server needs to be closed before testing! Otherwise the port will be already occupied by the server and supertest won't be able to make the test.
+**IMPORTANT**  Server needs to be closed before testing! Otherwise the port will be already occupied by the server and supertest won't be able to make the test.
 
 ## Service Workers
 Project uses service workers to make webpage available offline.
