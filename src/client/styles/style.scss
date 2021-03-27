@@ -228,7 +228,7 @@ textarea:focus {
 }
 
 /* RESPONSIVE FOR SMALL SCREEN */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   #app {
     display: grid;
     grid-template-columns: 100%;
@@ -259,7 +259,7 @@ textarea:focus {
 }
 
 /* RESPONSIVE FOR MEDIUM SCREEN */
-@media (min-width: 768px) and (max-width: 1000px) {
+@media (min-width: 769px) and (max-width: 1000px) {
   #app {
     display: grid;
     grid-template-columns: 100%;
