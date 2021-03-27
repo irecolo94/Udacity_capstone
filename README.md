@@ -34,7 +34,7 @@ Register on Geonames, Weatherbit, Pixabay. Save API_KEY and encrypt it before us
 
 ## PDF export
 Html2pdf will render a pdf of the selected card.
-***IMPORTANT***  Pictures won't be printed because of cross origin!
+***IMPORTANT***  Renders correctly only the first entry. Pictures won't be printed because of cross origin!
 
 ## Jest framework for testing
 Set up Jest to test the javascript on the client side.
