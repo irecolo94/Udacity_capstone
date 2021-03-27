@@ -53,7 +53,7 @@ function genAnswer(event) {
                 <div class="countdown">There are only ${trip.difference} days left to your trip!</div>
                 <div class="date">departure date: ${trip.departure}</div>
                 <div class="entry_holder">
-                    <div class="img">
+                    <div class="img" data-html2canvas-ignore="true">
                       <img src="${trip.currentPic}" alt="" class="img_small">
                     </div>
 
@@ -106,7 +106,7 @@ function genAnswer(event) {
 
           // add button to delete trip from client and server
           // add button to save pdf the trip
-          let pieceVier = `</div></div><button data-name='${thisID}' type="submit" name="button" value="submit" onClick="return Client.deleteTrip('${thisID}')" class="button_delete">remove Trip</button><button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF('${thisID}')" onsubmit="return createPDF('${thisID}')"> Save</button></div>`
+          let pieceVier = `</div></div><button data-name='${thisID}' type="submit" name="button" value="submit" onClick="return Client.deleteTrip('${thisID}')" class="button_delete" data-html2canvas-ignore="true">remove Trip</button><button id="save_pdf" type="submit" name="button" value="submit" onclick="return Client.createPDF('${thisID}')" onsubmit="return createPDF('${thisID}')" data-html2canvas-ignore="true"> Save</button></div>`
 
 
           const all = pieceEins + pieceZwei + pieceDrei + pieceVier
