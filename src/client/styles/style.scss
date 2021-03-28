@@ -1,6 +1,5 @@
 /*IMPORTS:*/
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&family=Staatliches&display=swap');
-
 /*VARIABLES:*/
 $font-head: Staatliches, cursive;
 $font-form: Maven Pro, sans-serif;
@@ -10,8 +9,6 @@ $color-text: #03254c;
 $color-borders: #2a9df4;
 $expired-grey: #ebedf3;
 $margin-card: 1em 1.5em;
-
-
 /*BASIC STRUCTURE:*/
 body {
   background-image: linear-gradient($color-background, white);
@@ -30,7 +27,6 @@ body {
   font: 100% $font-form;
   color: $color-text;
 }
-
 /*HEADER:*/
 .headline {
   grid-area: head;
@@ -42,13 +38,13 @@ body {
   h1 {
     font-size: 3em;
   };
-  p{
+
+  p {
     margin-top: 0;
     border-top: 1px solid $color-borders;
     border-bottom: 1px solid $color-borders;
   }
 }
-
 /*FORM:*/
 .zip {
   grid-area: zip;
@@ -100,7 +96,6 @@ button {
     background-color: $color-borders;
   }
 }
-
 /*TRIP CARDS STYLES:*/
 .entry {
   grid-area: entry;
@@ -116,7 +111,6 @@ button {
   margin: 0.5em 0;
   padding: 0.5em;
 }
-
 /*card head styling:*/
 h1 {
   font-size: 36px;
@@ -130,7 +124,6 @@ h1 {
     font-size: 2em;
   }
 }
-
 /*information styling:*/
 .entry_holder {
   display: flex;
@@ -181,7 +174,6 @@ img {
     width: 6em;
   }
 }
-
 /*EXPIRED TRIPS:*/
 #old_trips {
   grid-area: old;
@@ -192,22 +184,22 @@ img {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
     button {
       background-color: grey;
+
       &:hover {
         background-color: $color-borders;
       }
     }
   }
 }
-
 /*FOOTER*/
 footer {
   grid-area: foot;
   font-size: 0.5em;
   text-align: center;
 }
-
 /* Reset style for HTML element on active to have no border*/
 button:focus,
 input:focus,
@@ -233,7 +225,6 @@ textarea:focus {
   color: #3b4a6b;
   // font-family: 'Oswald', sans-serif;
 }
-
 /* RESPONSIVE FOR SMALL SCREEN */
 @media (max-width: 768px) {
   #app {
@@ -257,14 +248,14 @@ textarea:focus {
     justify-content: center;
     align-items: center;
   }
-#old_trips {
-  .expired {
-    display: flex;
-    flex-direction: column;
-  }}
 
+  #old_trips {
+    .expired {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
-
 /* RESPONSIVE FOR MEDIUM SCREEN */
 @media (min-width: 769px) and (max-width: 1000px) {
   #app {
