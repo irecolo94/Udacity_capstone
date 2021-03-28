@@ -22,8 +22,8 @@ body {
 #app {
   display: grid;
   grid-template-columns: 10% auto 10%;
-  grid-template-rows: auto auto auto auto;
-  grid-template-areas: "lo head fi" "lo zip fi" "lo entry fi" "lo old fi";
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-areas: "lo head fi" "lo zip fi" "lo entry fi" "lo old fi" "lo foot fi";
   justify-content: center;
   grid-row-gap: 1em;
   font-size: 20px;
@@ -201,6 +201,13 @@ img {
   }
 }
 
+/*FOOTER*/
+footer {
+  grid-area: foot;
+  font-size: 0.5em;
+  text-align: center;
+}
+
 /* Reset style for HTML element on active to have no border*/
 button:focus,
 input:focus,
@@ -232,8 +239,8 @@ textarea:focus {
   #app {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: auto auto auto auto;
-    grid-template-areas: "head" "zip" "entry" "old";
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas: "head" "zip" "entry" "old" "foot";
     justify-content: center;
     grid-row-gap: 1em;
     grid-column-gap: 1em;
@@ -264,7 +271,7 @@ textarea:focus {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
-    grid-template-areas: "head" "zip" "entry" "old";
+    grid-template-areas: "head" "zip" "entry" "old" "foot";
     justify-content: center;
     grid-row-gap: 1em;
     grid-column-gap: 1em;
